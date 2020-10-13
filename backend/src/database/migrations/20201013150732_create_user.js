@@ -3,6 +3,7 @@ exports.up = function (knex) {
     table.string("id").primary();
     table.string("email").notNullable();
     table.string("password").notNullable();
+    table.boolean("is_admin").defaultTo(false);
   });
 };
 
