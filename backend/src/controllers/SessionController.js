@@ -1,4 +1,5 @@
 const connection = require("../database/connection");
+const bcrypt = require("bcryptjs");
 
 module.exports = {
   async create(req, res) {
@@ -13,8 +14,8 @@ module.exports = {
       return res.status(400).json({ error: "User does not exists!" });
     }
 
-    if (user.email !== email || user.password !== password) {
-      return res.status(401).json({ error: "User or password invalid!" });
+    if (!(await bcrypt.compare(password, user.password))) {
+      return res.status(400).json({ error: "Password Invalid!" });
     }
 
     return res.json({ ok: "User logged!" });
