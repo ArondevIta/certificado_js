@@ -1,5 +1,8 @@
 const connection = require("../database/connection");
 const bcrypt = require("bcryptjs");
+const jwt = require("jsonwebtoken");
+
+const authConfig = require("../config/auth");
 
 module.exports = {
   async create(req, res) {
@@ -18,6 +21,10 @@ module.exports = {
       return res.status(400).json({ error: "Password Invalid!" });
     }
 
-    return res.json({ ok: "User logged!" });
+    const token = jwt.sign({ id: user.id }, authConfig.secret, {
+      expiresIn: 86400,
+    });
+
+    return res.json({ ok: "User logged!", token });
   },
 };
