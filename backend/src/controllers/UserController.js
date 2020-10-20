@@ -1,5 +1,8 @@
 const connection = require("../database/connection");
 const bcrypt = require("bcryptjs");
+const jwt = require("jsonwebtoken");
+
+const authConfig = require("../config/auth");
 
 module.exports = {
   async create(req, res) {
@@ -21,6 +24,10 @@ module.exports = {
       is_admin,
     });
 
-    return res.json({ newUser });
+    const token = jwt.sign({ id: newUser.id }, authConfig.secret, {
+      expiresIn: 86400,
+    });
+
+    return res.json({ newUser, token });
   },
 };
