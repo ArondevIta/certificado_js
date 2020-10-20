@@ -1,4 +1,5 @@
 const connection = require("../database/connection");
+const bcrypt = require("bcryptjs");
 
 module.exports = {
   async create(req, res) {
@@ -12,10 +13,11 @@ module.exports = {
     if (user) {
       return res.status(400).json({ error: "User exists" });
     }
+    const hash = await bcrypt.hash(password, 10);
 
     const newUser = await connection("users").insert({
       email,
-      password,
+      password: hash,
       is_admin,
     });
 
