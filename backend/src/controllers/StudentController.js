@@ -36,6 +36,15 @@ module.exports = {
       return res.status(400).json({ error: "Student already exists" });
     }
 
+    const user = await connection("users")
+      .where("id", user_id)
+      .select("*")
+      .first();
+
+    if (!user) {
+      return res.status(400).json({ error: "User not exists" });
+    }
+
     const newStudent = await connection("students").insert({
       name,
       registration,
