@@ -15,7 +15,6 @@ module.exports = {
       .where("id", id)
       .select("*")
       .first();
-    console.log(student);
 
     if (!student) {
       return res.status(400).json({ error: "Student not exists" });
