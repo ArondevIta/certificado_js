@@ -1,6 +1,6 @@
 exports.up = function (knex) {
   return knex.schema.createTable("certificates", function (table) {
-    table.string("id").primary();
+    table.increments("id").primary();
     table.string("code").notNullable();
     table.string("institution").notNullable();
     table.string("course").notNullable();
