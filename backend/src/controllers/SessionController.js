@@ -25,6 +25,6 @@ module.exports = {
       expiresIn: 86400,
     });
 
-    return res.json({ ok: "User logged!", token });
+    return res.json({ id: user.id, token });
   },
 };

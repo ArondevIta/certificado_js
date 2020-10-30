@@ -1,12 +1,11 @@
 const connection = require("../database/connection");
 const crypto = require("crypto");
-const { update } = require("../database/connection");
 
 module.exports = {
   async index(req, res) {
     const students = await connection("students").select("*");
 
-    return res.json(students);
+    return res.json({ students, id: req.userId });
   },
 
   async show(req, res) {
@@ -20,7 +19,7 @@ module.exports = {
       return res.status(400).json({ error: "Student not exists" });
     }
 
-    return res.json(student);
+    return res.json({ student, id: req.userId });
   },
 
   async create(req, res) {
@@ -53,7 +52,7 @@ module.exports = {
       user_id,
     });
 
-    return res.json({ newStudent });
+    return res.json({ newStudent, id: req.userId });
   },
 
   async update(req, res) {
@@ -82,7 +81,7 @@ module.exports = {
       .select("*")
       .first();
 
-    return res.json(studentUpdated);
+    return res.json({ studentUpdated, id: req.userId });
   },
 
   async destroy(req, res) {
