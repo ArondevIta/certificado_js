@@ -5,7 +5,12 @@ const SessionController = require("./controllers/SessionController");
 const StudentController = require("./controllers/StudentController");
 const CertificateController = require("./controllers/CertificateController");
 
+const auth = require("./middlewares/auth");
+
 const routes = express.Router();
+
+routes.use("/students", auth);
+routes.use("/certificates", auth);
 
 routes.post("/register", UserController.create);
 routes.post("/login", SessionController.create);
