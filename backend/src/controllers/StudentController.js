@@ -5,7 +5,7 @@ module.exports = {
   async index(req, res) {
     const students = await connection("students").select("*");
 
-    return res.json({ students, id: req.userId });
+    return res.json({ students });
   },
 
   async show(req, res) {

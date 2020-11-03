@@ -6,10 +6,11 @@ const StudentController = require("./controllers/StudentController");
 const CertificateController = require("./controllers/CertificateController");
 
 const auth = require("./middlewares/auth");
+const is_admin = require("./middlewares/is_admin");
 
 const routes = express.Router();
 
-routes.use("/students", auth);
+routes.use("/students", auth, is_admin);
 routes.use("/certificates", auth);
 
 routes.post("/register", UserController.create);
