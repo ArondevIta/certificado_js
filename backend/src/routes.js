@@ -24,8 +24,8 @@ routes.delete("/students/:id", StudentController.destroy);
 
 routes.get("/certificates", CertificateController.index);
 routes.get("/certificates/:id", CertificateController.show);
-routes.post("/certificates", CertificateController.create);
-routes.put("/certificates/:id", CertificateController.update);
-routes.delete("/certificates/:id", CertificateController.destroy);
+routes.post("/certificates", CertificateController.create, is_admin);
+routes.put("/certificates/:id", CertificateController.update, is_admin);
+routes.delete("/certificates/:id", CertificateController.destroy, is_admin);
 
 module.exports = routes;
