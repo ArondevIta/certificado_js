@@ -1,5 +1,8 @@
 import React from "react";
 import { Nav, Navbar, Form, Button, FormControl } from "react-bootstrap";
+import { FaHome, FaSignInAlt, FaUserPlus } from "react-icons/fa";
+
+import "./style.css";
 
 function Menu() {
   return (
@@ -8,9 +11,15 @@ function Menu() {
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
       <Navbar.Collapse id="basic-navbar-nav">
         <Nav className="mr-auto">
-          <Nav.Link href="#home">Home</Nav.Link>
-          <Nav.Link href="#link">Entrar</Nav.Link>
-          <Nav.Link href="#link">Cadastre-se</Nav.Link>
+          <Nav.Link className="link" href="#home">
+            Home <FaHome />
+          </Nav.Link>
+          <Nav.Link href="#link">
+            Entrar <FaSignInAlt />
+          </Nav.Link>
+          <Nav.Link href="#link">
+            Cadastre-se <FaUserPlus />
+          </Nav.Link>
         </Nav>
         <Form inline>
           <FormControl
