@@ -11,13 +11,13 @@ function Menu() {
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
       <Navbar.Collapse id="basic-navbar-nav">
         <Nav className="mr-auto">
-          <Nav.Link className="link" href="#home">
+          <Nav.Link id="link-menu" href="#home">
             Home <FaHome />
           </Nav.Link>
-          <Nav.Link href="#link">
+          <Nav.Link id="link-menu" href="#link">
             Entrar <FaSignInAlt />
           </Nav.Link>
-          <Nav.Link href="#link">
+          <Nav.Link id="link-menu" href="#link">
             Cadastre-se <FaUserPlus />
           </Nav.Link>
         </Nav>
