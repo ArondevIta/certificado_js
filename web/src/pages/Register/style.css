@@ -2,15 +2,15 @@
   width: 350px;
   margin-top: 12em;
 }
-.btn-login {
-  width: 100%;
-}
 h4 {
   color: #ffffff;
   text-align: center;
   padding-bottom: 50px;
 }
-.card-login {
+.card-register {
   background-color: #111111;
   padding: 25px;
+}
+.btn-register {
+  width: 100%;
 }
