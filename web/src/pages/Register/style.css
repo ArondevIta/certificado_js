@@ -1,0 +1,16 @@
+#content {
+  width: 350px;
+  margin-top: 12em;
+}
+h4 {
+  color: #ffffff;
+  text-align: center;
+  padding-bottom: 50px;
+}
+.card-register {
+  background-color: #111111;
+  padding: 25px;
+}
+.btn-register {
+  width: 100%;
+}
