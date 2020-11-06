@@ -17,6 +17,9 @@ function Home() {
   function goToLogin() {
     history.push("/login");
   }
+  function goToRegister() {
+    history.push("/register");
+  }
 
   return (
     <>
@@ -36,6 +39,7 @@ function Home() {
           Login
         </Button>
         <Button
+          onClick={goToRegister}
           style={{ marginLeft: 15, width: 200 }}
           variant="outline-primary"
           size="lg"

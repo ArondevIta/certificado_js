@@ -1,13 +1,7 @@
 import React from "react";
+import { useHistory } from "react-router-dom";
 
-import {
-  Container,
-  Card,
-  Form,
-  FormControl,
-  FormLabel,
-  Button,
-} from "react-bootstrap";
+import { Container, Card, Form, Button } from "react-bootstrap";
 
 import "./style.css";
 
