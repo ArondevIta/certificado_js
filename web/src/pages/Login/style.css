@@ -10,3 +10,7 @@ h4 {
   text-align: center;
   padding-bottom: 50px;
 }
+.card-login {
+  background-color: #111111;
+  padding: 25px;
+}

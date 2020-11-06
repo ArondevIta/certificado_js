@@ -1,5 +1,4 @@
 footer {
-  position: relative;
   text-align: center;
   bottom: 0;
   width: 100%;
@@ -7,10 +6,4 @@ footer {
   padding: 25px;
   background-color: #111;
   border-radius: 2px;
-}
-
-@media (min-width: 600px) {
-  footer {
-    position: absolute;
-  }
 }
