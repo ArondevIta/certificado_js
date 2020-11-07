@@ -9,10 +9,10 @@ function Menu() {
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
       <Navbar.Collapse id="basic-navbar-nav">
         <Nav className="mr-auto">
-          <Nav.Link href="/">
+          <Nav.Link href="/dashboard">
             Home <FaHome />
           </Nav.Link>
-          <Nav.Link href="/login">
+          <Nav.Link href="/dashboard/students">
             Alunos <FaUserGraduate />
           </Nav.Link>
           <NavDropdown title="Menu" id="basic-nav-dropdown">
