@@ -11,6 +11,9 @@ function Register() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [password1, setPassword1] = useState("");
+  const [name, setName] = useState("");
+  const [uf, setUf] = useState("");
+  const [city, setCity] = useState("");
   const is_admin = false;
 
   const history = useHistory();
@@ -42,6 +45,15 @@ function Register() {
       <Card className="card-register">
         <h4>Cadastre-se</h4>
         <Form onSubmit={handleRegister}>
+          <Form.Group controlId="formBasicText">
+            <Form.Control
+              type="text"
+              name="name"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+              placeholder="Nome completo"
+            />
+          </Form.Group>
           <Form.Group controlId="formBasicEmail">
             <Form.Control
               type="email"
@@ -70,6 +82,16 @@ function Register() {
               onChange={(e) => setPassword1(e.target.value)}
               placeholder="Confirmar senha"
             />
+          </Form.Group>
+          <Form.Group>
+            <Form.Control size="sm" as="select">
+              <option>BA</option>
+            </Form.Control>
+          </Form.Group>
+          <Form.Group>
+            <Form.Control size="sm" as="select">
+              <option>Itabuna</option>
+            </Form.Control>
           </Form.Group>
           <Button className="btn-login" type="submit" variant="dark">
             Cadastrar

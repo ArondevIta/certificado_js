@@ -1,11 +1,8 @@
 .card-students {
   margin-bottom: 10px;
+  background-color: #111111;
 }
 
-.text-card {
-  color: #111111;
-  padding: 0;
-}
 .icon-card:hover {
   cursor: pointer;
   height: 20px;

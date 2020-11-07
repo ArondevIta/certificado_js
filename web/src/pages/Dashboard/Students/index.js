@@ -15,12 +15,15 @@ function Students() {
         <Row>
           <Col sm={12} md={6} lg={4}>
             <Card className="card-students">
-              <Card.Header as="h6">
+              <Card.Header
+                style={{ color: "#ffffff", background: "#3d3d3d" }}
+                as="h6"
+              >
                 Aron Madson de Tarso Sousa do Amaral
               </Card.Header>
               <Card.Body style={{ margin: 0 }}>
                 <p>
-                  <strong className="text-card">Matricula</strong>: 2165465
+                  <strong className="text-card">Matricula:</strong> 2165465
                   <FaEdit
                     className="icon-card"
                     style={{ color: "#DAA520", float: "right" }}
@@ -41,12 +44,15 @@ function Students() {
           </Col>
           <Col sm={12} md={6} lg={4}>
             <Card className="card-students">
-              <Card.Header as="h6">
+              <Card.Header
+                style={{ color: "#ffffff", background: "#3d3d3d" }}
+                as="h6"
+              >
                 Aron Madson de Tarso Sousa do Amaral
               </Card.Header>
               <Card.Body style={{ margin: 0 }}>
                 <p>
-                  <strong className="text-card">Matricula</strong>: 2165465
+                  <strong className="text-card">Matricula:</strong> 2165465
                   <FaEdit
                     className="icon-card"
                     style={{ color: "#DAA520", float: "right" }}
@@ -67,12 +73,15 @@ function Students() {
           </Col>
           <Col sm={12} md={6} lg={4}>
             <Card className="card-students">
-              <Card.Header as="h6">
+              <Card.Header
+                style={{ color: "#ffffff", background: "#3d3d3d" }}
+                as="h6"
+              >
                 Aron Madson de Tarso Sousa do Amaral
               </Card.Header>
               <Card.Body style={{ margin: 0 }}>
                 <p>
-                  <strong className="text-card">Matricula</strong>: 2165465
+                  <strong className="text-card">Matricula:</strong> 2165465
                   <FaEdit
                     className="icon-card"
                     style={{ color: "#DAA520", float: "right" }}
