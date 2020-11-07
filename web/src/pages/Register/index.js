@@ -11,6 +11,7 @@ function Register() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [password1, setPassword1] = useState("");
+  const is_admin = false;
 
   const history = useHistory();
 
@@ -22,7 +23,11 @@ function Register() {
     }
 
     try {
-      const response = await api.post("register", { email, password });
+      const response = await api.post("register", {
+        email,
+        password,
+        is_admin,
+      });
       localStorage.setItem("token", response.data.token);
       localStorage.setItem("userId", response.data.id);
 

@@ -1,12 +1,33 @@
 import React from "react";
 
-import { Card } from "react-bootstrap";
+import { Container, Card, Col, Row } from "react-bootstrap";
+
+import Menu from "./Menu";
 
 function Dashboard() {
   return (
-    <Card>
-      <Card.Title> TESTE</Card.Title>
-    </Card>
+    <>
+      <Menu />
+      <Container>
+        <Row>
+          <Col sm={12} md={6} lg={4}>
+            <Card>
+              <Card.Title> TESTE</Card.Title>
+            </Card>
+          </Col>
+          <Col sm={12} md={6} lg={4}>
+            <Card>
+              <Card.Title> TESTE</Card.Title>
+            </Card>
+          </Col>
+          <Col sm={12} md={6} lg={4}>
+            <Card>
+              <Card.Title> TESTE</Card.Title>
+            </Card>
+          </Col>
+        </Row>
+      </Container>
+    </>
   );
 }
 

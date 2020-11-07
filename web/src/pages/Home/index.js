@@ -3,8 +3,7 @@ import { useHistory } from "react-router-dom";
 
 import { Container, Button, Row, Col, Image } from "react-bootstrap";
 
-import Menu from "../Menu";
-import Footer from "../Footer";
+import Menu from "./Menu";
 
 import certificado1 from "../../assets/certificado1.jpg";
 import certificado2 from "../../assets/certificado2.jpg";
@@ -74,7 +73,6 @@ function Home() {
           </Col>
         </Row>
       </Container>
-      <Footer />
     </>
   );
 }
