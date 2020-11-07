@@ -1,32 +1,28 @@
 import React from "react";
 
-import { Container, Card, Col, Row } from "react-bootstrap";
+import { Jumbotron, Button } from "react-bootstrap";
 
 import Menu from "./Menu";
+
+import "./style.css";
 
 function Dashboard() {
   return (
     <>
       <Menu />
-      <Container>
-        <Row>
-          <Col sm={12} md={6} lg={4}>
-            <Card>
-              <Card.Title> TESTE</Card.Title>
-            </Card>
-          </Col>
-          <Col sm={12} md={6} lg={4}>
-            <Card>
-              <Card.Title> TESTE</Card.Title>
-            </Card>
-          </Col>
-          <Col sm={12} md={6} lg={4}>
-            <Card>
-              <Card.Title> TESTE</Card.Title>
-            </Card>
-          </Col>
-        </Row>
-      </Container>
+      <Jumbotron className="jumbotron-dashboard">
+        <h1>Olá, Admin!</h1>
+        <p>
+          Comece agora a cadastrar seus alunos e gerar certificados de forma
+          fácil e rápida.
+        </p>
+        <p>
+          <Button variant="dark">Cadastrar Aluno</Button>
+          <Button style={{ marginLeft: 10 }} variant="light">
+            Emitir Certificado
+          </Button>
+        </p>
+      </Jumbotron>
     </>
   );
 }
