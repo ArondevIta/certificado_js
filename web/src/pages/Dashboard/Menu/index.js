@@ -16,14 +16,10 @@ function Menu() {
             Alunos <FaUserGraduate />
           </Nav.Link>
           <NavDropdown title="Menu" id="basic-nav-dropdown">
-            <NavDropdown.Item href="#action/3.1">
-              Cadastrar Aluno
-            </NavDropdown.Item>
+            <NavDropdown.Item href="#action/3.1">Certificados</NavDropdown.Item>
             <NavDropdown.Item href="#action/3.2">
               Cadastrar Certificado
             </NavDropdown.Item>
-            <NavDropdown.Divider />
-            <NavDropdown.Item href="#action/3.4">Certificados</NavDropdown.Item>
           </NavDropdown>
           <Nav.Link href="#link">
             Sair <FaSignOutAlt />
