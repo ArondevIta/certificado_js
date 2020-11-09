@@ -10,17 +10,16 @@ const is_admin = require("./middlewares/is_admin");
 
 const routes = express.Router();
 
-routes.use("/students", auth, is_admin);
 routes.use("/certificates", auth);
 
 routes.post("/register", UserController.create);
 routes.post("/login", SessionController.create);
 
-routes.get("/students", StudentController.index);
-routes.get("/students/:id", StudentController.show);
+routes.get("/students", StudentController.index, auth, is_admin);
+routes.get("/students/:id", StudentController.show, auth, is_admin);
 routes.post("/students", StudentController.create);
-routes.put("/students/:id", StudentController.update);
-routes.delete("/students/:id", StudentController.destroy);
+routes.put("/students/:id", StudentController.update, auth);
+routes.delete("/students/:id", StudentController.destroy, auth, is_admin);
 
 routes.get("/certificates", CertificateController.index);
 routes.get("/certificates/:id", CertificateController.show);
