@@ -1,6 +1,6 @@
 import React from "react";
 
-import { Container, Card, Col, Row, Nav } from "react-bootstrap";
+import { Container, Card, Col, Row } from "react-bootstrap";
 import { FaEdit, FaTrashAlt } from "react-icons/fa";
 
 import Menu from "../Menu";
