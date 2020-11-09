@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 
 import { Container, Card, Form, Button } from "react-bootstrap";
 import { useHistory } from "react-router-dom";
@@ -12,11 +13,48 @@ function Register() {
   const [password, setPassword] = useState("");
   const [password1, setPassword1] = useState("");
   const [name, setName] = useState("");
-  const [uf, setUf] = useState("");
-  const [city, setCity] = useState("");
+  const [ufs, setUfs] = useState([]);
+  const [cities, setCities] = useState([]);
+
+  const [selectedUf, setSelectedUf] = useState("0");
+  const [selectedCity, setSelectedCity] = useState("0");
+
   const is_admin = false;
 
   const history = useHistory();
+
+  useEffect(() => {
+    axios
+      .get("https://servicodados.ibge.gov.br/api/v1/localidades/estados")
+      .then((response) => {
+        const ufInitials = response.data.map((uf) => uf.sigla);
+        setUfs(ufInitials);
+      });
+  }, []);
+
+  useEffect(() => {
+    if (selectedUf === "0") {
+      return;
+    }
+    axios
+      .get(
+        `https://servicodados.ibge.gov.br/api/v1/localidades/estados/${selectedUf}/municipios`
+      )
+      .then((response) => {
+        const cityNames = response.data.map((city) => city.nome);
+        setCities(cityNames);
+      });
+  }, [selectedUf]);
+
+  function handleSelectUf(e) {
+    const uf = e.target.value;
+    setSelectedUf(uf);
+  }
+
+  function handleSelectCity(e) {
+    const city = e.target.value;
+    setSelectedCity(city);
+  }
 
   async function handleRegister(e) {
     e.preventDefault();
@@ -34,6 +72,17 @@ function Register() {
       localStorage.setItem("token", response.data.token);
       localStorage.setItem("userId", response.data.id);
 
+      const user_id = response.data.id;
+      const token = response.data.token;
+      console.log(user_id);
+      console.log(token);
+
+      await api.post("students", {
+        name,
+        user_id,
+        city: selectedCity,
+        uf: selectedUf,
+      });
       history.push("dashboard");
     } catch (err) {
       alert("Err", err);
@@ -74,7 +123,7 @@ function Register() {
               required
             />
           </Form.Group>
-          <Form.Group controlId="formBasicPassword">
+          <Form.Group controlId="formBasicPassword1">
             <Form.Control
               type="password"
               name="password1"
@@ -84,13 +133,33 @@ function Register() {
             />
           </Form.Group>
           <Form.Group>
-            <Form.Control size="sm" as="select">
-              <option>BA</option>
+            <Form.Control
+              name="uf"
+              value={selectedUf}
+              onChange={handleSelectUf}
+              as="select"
+            >
+              <option value="0">Selecione um Estado</option>
+              {ufs.map((uf) => (
+                <option key={uf} value={uf}>
+                  {uf}
+                </option>
+              ))}
             </Form.Control>
           </Form.Group>
           <Form.Group>
-            <Form.Control size="sm" as="select">
-              <option>Itabuna</option>
+            <Form.Control
+              name="city"
+              value={selectedCity}
+              onChange={handleSelectCity}
+              as="select"
+            >
+              <option value="0">Selecione uma cidade</option>
+              {cities.map((city) => (
+                <option key={city} value={city}>
+                  {city}
+                </option>
+              ))}
             </Form.Control>
           </Form.Group>
           <Button className="btn-login" type="submit" variant="dark">

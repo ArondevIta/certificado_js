@@ -11,6 +11,7 @@ module.exports = {
     const user = await connection("users")
       .where("email", email)
       .select("*")
+      .returning("id")
       .first();
 
     if (user) {
@@ -28,6 +29,6 @@ module.exports = {
       expiresIn: 86400,
     });
 
-    return res.json({ newUser, token });
+    return res.json({ id: newUser, token });
   },
 };
