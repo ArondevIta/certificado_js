@@ -39,6 +39,13 @@ function Certificates() {
           </Modal.Header>
           <Modal.Body>
             <Form>
+              <Form.Group controlId="formGridState">
+                <Form.Label>Aluno</Form.Label>
+                <Form.Control as="select" defaultValue="Choose...">
+                  <option>Choose...</option>
+                  <option>...</option>
+                </Form.Control>
+              </Form.Group>
               <Form.Row>
                 <Form.Group as={Col} controlId="formGridInstituition">
                   <Form.Label>Instituição</Form.Label>
