@@ -8,6 +8,7 @@ import Register from "./pages/Register";
 import Dashboard from "./pages/Dashboard";
 import Students from "./pages/Dashboard/Students";
 import Certificates from "./pages/Dashboard/Certificates";
+import EditCertificate from "./pages/Dashboard/Certificates/EditCertificate";
 
 function Routes() {
   return (
@@ -18,6 +19,11 @@ function Routes() {
         <Route path="/register" component={Register} />
         <Route path="/dashboard" exact component={Dashboard} />
         <Route path="/dashboard/certificates" exact component={Certificates} />
+        <Route
+          path="/dashboard/certificates/edit"
+          exact
+          component={EditCertificate}
+        />
         <Route path="/dashboard/students" exact component={Students} />
       </Switch>
     </BrowserRouter>
