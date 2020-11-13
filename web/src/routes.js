@@ -9,6 +9,7 @@ import Dashboard from "./pages/Dashboard";
 import Students from "./pages/Dashboard/Students";
 import Certificates from "./pages/Dashboard/Certificates";
 import EditCertificate from "./pages/Dashboard/Certificates/EditCertificate";
+import TestePdf from "./pages/Dashboard/TestePdf";
 
 function Routes() {
   return (
@@ -24,6 +25,7 @@ function Routes() {
           exact
           component={EditCertificate}
         />
+        <Route path="/dashboard/teste" exact component={TestePdf} />
         <Route path="/dashboard/students" exact component={Students} />
       </Switch>
     </BrowserRouter>
