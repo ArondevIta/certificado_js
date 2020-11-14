@@ -34,15 +34,23 @@ function Certificates() {
     doc.addImage(img, "png", 0, 1, 300, 200);
 
     doc.text(
-      20,
+      40,
       100,
-      `Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
-      In fermentum, sapien vel ornare gravida, ipsum sem finibus arcu, 
-      sit amet pretium urna lorem quis lorem. Mauris quis cursus lacus. 
-      Integer viverra leo nec volutpat ultrices. In vel erat dignissim, ultricies ex quis, euismod tellus. Nam et augue vitae nisl euismod laoreet. Quisque mi risus, efficitur varius pellentesque id, ultrices quis magna. Mauris ut auctor urna. Sed sem risus, scelerisque a lacinia at, accumsan scelerisque nunc. Vestibulum finibus tellus sit amet ultrices ultricies. Pellentesque cursus suscipit elit quis malesuada. Donec nibh elit, rhoncus sit amet volutpat at, condimentum nec ex. Sed sodales dui sed ipsum pulvinar porta. Phasellus aliquet consectetur quam at imperdiet. Maecenas convallis dignissim lorem eu pulvinar. Proin vitae mattis sapien.`
+      `Certificamos que o aluno Aron Madson de Tarso Sousa do Amaral terminou o curso
+    de sistemas de informação pela Faculdade de Tecnologia e Ciências, com carga
+    horária de 30 horas.`
     );
+    doc.text(60, 159, "25/10/2020");
 
-    doc.save("demo.pdf");
+    doc.setFont("arial", "italic").text(150, 159, "Carlos Eduardo");
+    doc.text(140, 160, "________________________");
+
+    doc
+      .setFont("times", "italic")
+      .setFontSize(8)
+      .text(80, 185, "codigo: 456841xsa4");
+
+    doc.save("certificado.pdf");
   };
 
   return (
