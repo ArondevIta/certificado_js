@@ -5,7 +5,7 @@ module.exports = {
   async index(req, res) {
     const certificates = await connection("certificates").select("*");
 
-    return res.json(certificates);
+    return res.json({ certificates });
   },
 
   async show(req, res) {
