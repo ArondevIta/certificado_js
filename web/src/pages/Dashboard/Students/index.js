@@ -16,26 +16,16 @@ function Students() {
   const userId = localStorage.getItem("userId");
   const token = localStorage.getItem("token");
 
-  // async function loadStudents() {
-  //   const response = await api.get("students", {
-  //     headers: { Authorization: `Bearer ${token}` },
-  //   });
-
-  //   setStudents(response.data);
-
-  //   console.log(students);
-  // }
-
   useEffect(() => {
     async function loadSpots() {
-      const userId = localStorage.getItem("userId");
-      const token = localStorage.getItem("token");
       const response = await api.get("students", {
         headers: { Authorization: `Bearer ${token}` },
       });
 
-      setStudents(response.data);
-      console.log(response.data);
+      const { students } = response.data;
+
+      setStudents(students);
+      console.log(typeof response.data);
     }
     loadSpots();
   }, []);
@@ -45,39 +35,41 @@ function Students() {
       <Menu />
       <Container style={{ marginTop: 50 }}>
         <Row>
-          {/* {students.map((student) => (
-            <Col key={student.id} sm={12} md={6} lg={4}>
-              <Card className="card-students">
-                <Card.Header
-                  style={{ color: "#ffffff", background: "#3d3d3d" }}
-                  as="h6"
-                >
-                  {student.name}
-                </Card.Header>
-                <Card.Body style={{ margin: 0 }}>
-                  <p>
-                    <strong className="text-card">Matricula:</strong>
-                    {student.registration}
-                    <FaEdit
-                      className="icon-card"
-                      style={{ color: "#DAA520", float: "right" }}
-                    />
-                  </p>
-                  <p>
-                    <strong className="text-card">Estado:</strong> {student.uf}
-                  </p>
-                  <p>
-                    <strong className="text-card">Cidade:</strong>
-                    {student.city}
-                    <FaTrashAlt
-                      className="icon-card"
-                      style={{ float: "right", color: "crimson" }}
-                    />
-                  </p>
-                </Card.Body>
-              </Card>
-            </Col>
-          ))} */}
+          {students &&
+            students.map((student) => (
+              <Col key={student.id} sm={12} md={6} lg={4}>
+                <Card className="card-students">
+                  <Card.Header
+                    style={{ color: "#ffffff", background: "#3d3d3d" }}
+                    as="h6"
+                  >
+                    {student.name}
+                  </Card.Header>
+                  <Card.Body style={{ margin: 0 }}>
+                    <p>
+                      <strong className="text-card">Matricula:</strong>
+                      {student.registration}
+                      <FaEdit
+                        className="icon-card"
+                        style={{ color: "#DAA520", float: "right" }}
+                      />
+                    </p>
+                    <p>
+                      <strong className="text-card">Estado:</strong>{" "}
+                      {student.uf}
+                    </p>
+                    <p>
+                      <strong className="text-card">Cidade:</strong>
+                      {student.city}
+                      <FaTrashAlt
+                        className="icon-card"
+                        style={{ float: "right", color: "crimson" }}
+                      />
+                    </p>
+                  </Card.Body>
+                </Card>
+              </Col>
+            ))}
         </Row>
       </Container>
     </>
