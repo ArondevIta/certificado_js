@@ -1,6 +1,8 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 import Menu from "../Menu";
+import img from "../../../assets/certificado.png";
+import api from "../../../services/api";
 
 import {
   Container,
@@ -16,13 +18,33 @@ import jsPDF from "jspdf";
 
 import "./style.css";
 
-import img from "../../../assets/certificado.png";
-
 function Certificates() {
   const [show, setShow] = useState(false);
+  const [certificates, setCertificates] = useState([]);
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+
+  const userId = localStorage.getItem("userId");
+  const token = localStorage.getItem("token");
+
+  console.log(token);
+
+  useEffect(() => {
+    async function loadCertificates() {
+      const response = await api.get("certificates", {
+        headers: { Authorization: `Bearer ${token}` },
+      });
+
+      const { certificates } = response.data;
+
+      console.log(response.data);
+
+      setCertificates(certificates);
+    }
+
+    loadCertificates();
+  }, []);
 
   const generatePDF = () => {
     var doc = new jsPDF({
@@ -137,48 +159,24 @@ function Certificates() {
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <td>Mark</td>
-                <td>Otto</td>
-                <td>@mdo</td>
-                <td>Mark</td>
-                <td>Otto</td>
-                <td>@mdo</td>
-                <td>
-                  <FaPrint onClick={generatePDF} />
-                </td>
-                <td>
-                  <FaEdit color={"yellow"} /> <FaTrashAlt color={"crimson"} />
-                </td>
-              </tr>
-              <tr>
-                <td>Jacob</td>
-                <td>Thornton</td>
-                <td>@fat</td>
-                <td>Mark</td>
-                <td>Otto</td>
-                <td>@mdo</td>
-                <td>
-                  <FaPrint />
-                </td>
-                <td>
-                  <FaEdit color={"yellow"} /> <FaTrashAlt color={"crimson"} />
-                </td>
-              </tr>
-              <tr>
-                <td>Larry the Bird</td>
-                <td>@twitter</td>
-                <td>Mark</td>
-                <td>Otto</td>
-                <td>Otto</td>
-                <td>@mdo</td>
-                <td>
-                  <FaPrint />
-                </td>
-                <td>
-                  <FaEdit color={"yellow"} /> <FaTrashAlt color={"crimson"} />
-                </td>
-              </tr>
+              {certificates &&
+                certificates.map((certificate) => (
+                  <tr>
+                    <td>{certificate.code}</td>
+                    <td>{certificate.institution}</td>
+                    <td>{certificate.course}</td>
+                    <td>{certificate.charge_horary}</td>
+                    <td>{certificate.coordinate}</td>
+                    <td>{certificate.date}</td>
+                    <td>
+                      <FaPrint onClick={generatePDF} />
+                    </td>
+                    <td>
+                      <FaEdit color={"yellow"} />{" "}
+                      <FaTrashAlt color={"crimson"} />
+                    </td>
+                  </tr>
+                ))}
             </tbody>
           </Table>
         </Row>
