@@ -46,34 +46,51 @@ function Certificates() {
     loadCertificates();
   }, []);
 
-  const generatePDF = () => {
+  async function generatePDF(id) {
+    const response = await api.get(`certificates/${id}`, {
+      headers: { Authorization: `Bearer ${token}` },
+    });
+
+    const {
+      student_id,
+      code,
+      institution,
+      date,
+      coordinate,
+      charge_horary,
+    } = response.data;
+
+    const res = await api.get(`students/${student_id}`, {
+      headers: { Authorization: `Bearer ${token}` },
+    });
+
+    const { name } = res.data.student;
+
     var doc = new jsPDF({
       orientation: "landscape",
     });
-
-    const nome = "Aron";
 
     doc.addImage(img, "png", 0, 1, 300, 200);
 
     doc.text(
       40,
       100,
-      `Certificamos que o aluno Aron Madson de Tarso Sousa do Amaral terminou o curso
-    de sistemas de informação pela Faculdade de Tecnologia e Ciências, com carga
-    horária de 30 horas.`
+      `Certificamos que o aluno ${name} terminou o curso
+    de sistemas de informação pela ${institution}, com carga
+    horária de ${charge_horary} horas.`
     );
-    doc.text(60, 159, "25/10/2020");
+    doc.text(60, 159, date);
 
-    doc.setFont("arial", "italic").text(150, 159, "Carlos Eduardo");
+    doc.setFont("arial", "italic").text(150, 159, coordinate);
     doc.text(140, 160, "________________________");
 
     doc
       .setFont("times", "italic")
       .setFontSize(8)
-      .text(80, 185, "codigo: 456841xsa4");
+      .text(80, 185, `código: ${code}`);
 
     doc.save("certificado.pdf");
-  };
+  }
 
   return (
     <>
@@ -169,7 +186,10 @@ function Certificates() {
                     <td>{certificate.coordinate}</td>
                     <td>{certificate.date}</td>
                     <td>
-                      <FaPrint onClick={generatePDF} />
+                      <FaPrint
+                        className="print-icon"
+                        onClick={() => generatePDF(certificate.id)}
+                      />
                     </td>
                     <td>
                       <FaEdit color={"yellow"} />{" "}

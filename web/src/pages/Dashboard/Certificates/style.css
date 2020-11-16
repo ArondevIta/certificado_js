@@ -1,3 +1,7 @@
 .table-certificates {
   text-align: center;
 }
+.print-icon:hover {
+  height: 30px;
+  cursor: pointer;
+}
