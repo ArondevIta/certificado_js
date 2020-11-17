@@ -21,30 +21,74 @@ import "./style.css";
 function Certificates() {
   const [show, setShow] = useState(false);
   const [certificates, setCertificates] = useState([]);
+  const [students, setStudents] = useState([]);
+  const [selectedStudent, setSelectedStudent] = useState("0");
+  const [institution, setInstitution] = useState("");
+  const [course, setCourse] = useState("");
+  const [coordinate, setCoordinate] = useState("");
+  const [charge_horary, setChargeHorary] = useState("");
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
-  const userId = localStorage.getItem("userId");
   const token = localStorage.getItem("token");
 
-  console.log(token);
+  async function loadStudents() {
+    const response = await api.get("students", {
+      headers: { Authorization: `Bearer ${token}` },
+    });
+
+    const { students } = response.data;
+
+    setStudents(students);
+  }
 
   useEffect(() => {
-    async function loadCertificates() {
-      const response = await api.get("certificates", {
-        headers: { Authorization: `Bearer ${token}` },
-      });
+    loadStudents();
+  }, []);
 
-      const { certificates } = response.data;
+  async function loadCertificates() {
+    const response = await api.get("certificates", {
+      headers: { Authorization: `Bearer ${token}` },
+    });
 
-      console.log(response.data);
+    const { certificates } = response.data;
 
-      setCertificates(certificates);
-    }
+    setCertificates(certificates);
+  }
 
+  useEffect(() => {
     loadCertificates();
   }, []);
+
+  async function handleAddCertificate(e) {
+    e.preventDefault();
+    var date = new Date();
+
+    date = `${date.getDate()}-${date.getMonth()}-${date.getFullYear()}`;
+
+    const data = {
+      institution,
+      course,
+      charge_horary,
+      coordinate,
+      date,
+      student_id: selectedStudent,
+    };
+
+    await api.post("certificates", data, {
+      headers: { Authorization: `Bearer ${token}` },
+    });
+
+    loadCertificates();
+    handleClose();
+  }
+
+  function handleSelectedStudent(e) {
+    e.preventDefault();
+    const student = e.target.value;
+    setSelectedStudent(student);
+  }
 
   async function generatePDF(id) {
     const response = await api.get(`certificates/${id}`, {
@@ -109,12 +153,22 @@ function Certificates() {
             <Modal.Title>Cadastro de certificado</Modal.Title>
           </Modal.Header>
           <Modal.Body>
-            <Form>
+            <Form onSubmit={handleAddCertificate}>
               <Form.Group controlId="formGridState">
                 <Form.Label>Aluno</Form.Label>
-                <Form.Control as="select" defaultValue="Choose...">
-                  <option>Choose...</option>
-                  <option>...</option>
+                <Form.Control
+                  name="student"
+                  as="select"
+                  value={selectedStudent}
+                  onChange={handleSelectedStudent}
+                >
+                  <option value="0">Selecione um Aluno</option>
+                  {students &&
+                    students.map((student) => (
+                      <option key={student.id} value={student.id}>
+                        {student.name}
+                      </option>
+                    ))}
                 </Form.Control>
               </Form.Group>
               <Form.Row>
@@ -122,13 +176,22 @@ function Certificates() {
                   <Form.Label>Instituição</Form.Label>
                   <Form.Control
                     type="text"
+                    name="institution"
+                    value={institution}
+                    onChange={(e) => setInstitution(e.target.value)}
                     placeholder="Nome da Instituição de ensino"
                   />
                 </Form.Group>
 
                 <Form.Group as={Col} controlId="formGridCourse">
                   <Form.Label>Curso</Form.Label>
-                  <Form.Control type="text" placeholder="Nome do Curso" />
+                  <Form.Control
+                    type="text"
+                    name="course"
+                    value={course}
+                    onChange={(e) => setCourse(e.target.value)}
+                    placeholder="Nome do Curso"
+                  />
                 </Form.Group>
               </Form.Row>
 
@@ -136,18 +199,27 @@ function Certificates() {
                 <Form.Label>Carga Horária</Form.Label>
                 <Form.Control
                   type="number"
+                  name="charge_horary"
+                  value={charge_horary}
+                  onChange={(e) => setChargeHorary(e.target.value)}
                   placeholder="Por favor digite a carga horária"
                 />
               </Form.Group>
 
               <Form.Group controlId="formGridCoordinate">
                 <Form.Label>Coordenador</Form.Label>
-                <Form.Control placeholder="Nome do Coordenador" />
+                <Form.Control
+                  type="text"
+                  name="coordinate"
+                  value={coordinate}
+                  onChange={(e) => setCoordinate(e.target.value)}
+                  placeholder="Nome do Coordenador"
+                />
               </Form.Group>
               <Button
+                type="submit"
                 style={{ float: "right" }}
                 variant="primary"
-                onClick={handleClose}
               >
                 Cadastrar certificado
               </Button>
@@ -178,7 +250,7 @@ function Certificates() {
             <tbody>
               {certificates &&
                 certificates.map((certificate) => (
-                  <tr>
+                  <tr key={certificate.id}>
                     <td>{certificate.code}</td>
                     <td>{certificate.institution}</td>
                     <td>{certificate.course}</td>
