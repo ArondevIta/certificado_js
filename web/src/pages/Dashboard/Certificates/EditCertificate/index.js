@@ -1,16 +1,23 @@
-import React from "react";
+import React, { useState } from "react";
 
 import { Container, Form, Button, Col } from "react-bootstrap";
+import { useLocation } from "react-router-dom";
+
 import Menu from "../../Menu";
+import api from "../../../../services/api";
 
 function EditCertificate() {
+  const location = useLocation();
+  const { id, institution, charge_horary, coordinate, course } = location.state;
+  const token = localStorage.getItem("token");
+
   return (
     <>
       <Menu />
 
       <Container
         style={{
-          width: 500,
+          width: 400,
           color: "#ffffff",
           marginTop: 25,
         }}

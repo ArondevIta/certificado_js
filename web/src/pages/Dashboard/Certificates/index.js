@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { useHistory } from "react-router-dom";
 
 import Menu from "../Menu";
 import img from "../../../assets/certificado.png";
@@ -32,6 +33,7 @@ function Certificates() {
   const handleShow = () => setShow(true);
 
   const token = localStorage.getItem("token");
+  const history = useHistory();
 
   async function loadStudents() {
     const response = await api.get("students", {
@@ -96,6 +98,16 @@ function Certificates() {
     e.preventDefault();
     const student = e.target.value;
     setSelectedStudent(student);
+  }
+
+  function navigateToEdit(id, course, institution, charge_horary, coordinate) {
+    history.push("certificates/edit", {
+      id,
+      course,
+      institution,
+      charge_horary,
+      coordinate,
+    });
   }
 
   async function generatePDF(id) {
@@ -235,7 +247,7 @@ function Certificates() {
           </Modal.Body>
         </Modal>
         <Row>
-          <Table className="table-certificates" responsive borderless hover>
+          <Table className="table-certificates" responsive borderless>
             <thead>
               <tr>
                 <th>Codigo</th>
@@ -265,7 +277,19 @@ function Certificates() {
                       />
                     </td>
                     <td>
-                      <FaEdit className="edit-icon" color={"yellow"} />
+                      <FaEdit
+                        onClick={() =>
+                          navigateToEdit(
+                            certificate.id,
+                            certificate.course,
+                            certificate.institution,
+                            certificate.charge_horary,
+                            certificate.coordinate
+                          )
+                        }
+                        className="edit-icon"
+                        color={"yellow"}
+                      />
                       <FaTrashAlt
                         className="remove-icon"
                         color={"crimson"}
