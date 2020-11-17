@@ -84,6 +84,14 @@ function Certificates() {
     handleClose();
   }
 
+  async function handleDeleteCertificate(id) {
+    await api.delete(`certificates/${id}`, {
+      headers: { Authorization: `Bearer ${token}` },
+    });
+
+    loadCertificates();
+  }
+
   function handleSelectedStudent(e) {
     e.preventDefault();
     const student = e.target.value;
@@ -257,8 +265,12 @@ function Certificates() {
                       />
                     </td>
                     <td>
-                      <FaEdit color={"yellow"} />{" "}
-                      <FaTrashAlt color={"crimson"} />
+                      <FaEdit className="edit-icon" color={"yellow"} />
+                      <FaTrashAlt
+                        className="remove-icon"
+                        color={"crimson"}
+                        onClick={() => handleDeleteCertificate(certificate.id)}
+                      />
                     </td>
                   </tr>
                 ))}

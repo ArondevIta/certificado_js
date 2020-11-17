@@ -1,6 +1,11 @@
 import React from "react";
-import { Nav, Navbar, NavDropdown } from "react-bootstrap";
-import { FaHome, FaUserGraduate, FaSignOutAlt } from "react-icons/fa";
+import { Nav, Navbar } from "react-bootstrap";
+import {
+  FaHome,
+  FaUserGraduate,
+  FaSignOutAlt,
+  FaCertificate,
+} from "react-icons/fa";
 
 function Menu() {
   return (
@@ -15,12 +20,10 @@ function Menu() {
           <Nav.Link href="/dashboard/students">
             Alunos <FaUserGraduate />
           </Nav.Link>
-          <NavDropdown title="Menu" id="basic-nav-dropdown">
-            <NavDropdown.Item href="#action/3.1">Certificados</NavDropdown.Item>
-            <NavDropdown.Item href="#action/3.2">
-              Cadastrar Certificado
-            </NavDropdown.Item>
-          </NavDropdown>
+          <Nav.Link href="/dashboard/certificates">
+            Certificados <FaCertificate />
+          </Nav.Link>
+
           <Nav.Link href="#link">
             Sair <FaSignOutAlt />
           </Nav.Link>
