@@ -17,7 +17,7 @@ function Students() {
   const token = localStorage.getItem("token");
 
   useEffect(() => {
-    async function loadSpots() {
+    async function loadStudents() {
       const response = await api.get("students", {
         headers: { Authorization: `Bearer ${token}` },
       });
@@ -25,9 +25,8 @@ function Students() {
       const { students } = response.data;
 
       setStudents(students);
-      console.log(typeof response.data);
     }
-    loadSpots();
+    loadStudents();
   }, []);
 
   return (
