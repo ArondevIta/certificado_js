@@ -227,14 +227,7 @@ function Certificates() {
           </Modal.Body>
         </Modal>
         <Row>
-          <Table
-            className="table-certificates"
-            responsive
-            striped
-            bordered
-            hover
-            variant="dark"
-          >
+          <Table className="table-certificates" responsive borderless hover>
             <thead>
               <tr>
                 <th>Codigo</th>
