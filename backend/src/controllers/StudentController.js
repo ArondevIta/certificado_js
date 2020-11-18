@@ -87,6 +87,14 @@ module.exports = {
   async destroy(req, res) {
     const { id } = req.params;
 
+    const certificates = await connection("certificates")
+      .where("student_id", id)
+      .select("*");
+
+    if (certificates) {
+      await connection("certificates").delete().where("student_id", id);
+    }
+
     const student = await connection("students")
       .where("id", id)
       .select("*")
