@@ -11,8 +11,7 @@ import "./style.css";
 
 function Students() {
   const [students, setStudents] = useState([]);
-  const history = useHistory();
-  
+
   const token = localStorage.getItem("token");
 
   useEffect(() => {
