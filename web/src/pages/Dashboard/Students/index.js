@@ -14,18 +14,27 @@ function Students() {
 
   const token = localStorage.getItem("token");
 
+  async function loadStudents() {
+    const response = await api.get("students", {
+      headers: { Authorization: `Bearer ${token}` },
+    });
+
+    const { students } = response.data;
+
+    setStudents(students);
+  }
+
   useEffect(() => {
-    async function loadStudents() {
-      const response = await api.get("students", {
-        headers: { Authorization: `Bearer ${token}` },
-      });
-
-      const { students } = response.data;
-
-      setStudents(students);
-    }
     loadStudents();
   }, []);
+
+  async function handleRemoveStudent(id) {
+    await api.delete(`students/${id}`, {
+      headers: { Authorization: `Bearer ${token}` },
+    });
+
+    loadStudents();
+  }
 
   return (
     <>
@@ -61,6 +70,7 @@ function Students() {
                       <FaTrashAlt
                         className="icon-card"
                         style={{ float: "right", color: "crimson" }}
+                        onClick={(e) => handleRemoveStudent(student.id)}
                       />
                     </p>
                   </Card.Body>
