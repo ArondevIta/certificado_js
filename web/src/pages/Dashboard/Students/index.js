@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 
 import { Container, Card, Col, Row } from "react-bootstrap";
 import { FaEdit, FaTrashAlt } from "react-icons/fa";
-import { useHistory } from "react-router-dom";
 
 import Menu from "../Menu";
 import api from "../../../services/api";

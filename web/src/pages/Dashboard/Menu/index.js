@@ -6,8 +6,16 @@ import {
   FaSignOutAlt,
   FaCertificate,
 } from "react-icons/fa";
+import { useHistory } from "react-router-dom";
 
 function Menu() {
+  const history = useHistory();
+
+  function handleLogout() {
+    localStorage.clear();
+    history.push("/");
+  }
+
   return (
     <Navbar bg="primary" expand="lg">
       <Navbar.Brand href="#home">Certificado Legal</Navbar.Brand>
@@ -24,7 +32,7 @@ function Menu() {
             Certificados <FaCertificate />
           </Nav.Link>
 
-          <Nav.Link href="#link">
+          <Nav.Link onClick={handleLogout}>
             Sair <FaSignOutAlt />
           </Nav.Link>
         </Nav>
