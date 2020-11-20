@@ -1,12 +1,23 @@
 import React from "react";
 
 import { Jumbotron, Button } from "react-bootstrap";
+import { useHistory } from "react-router-dom";
 
 import Menu from "./Menu";
 
 import "./style.css";
 
 function Dashboard() {
+  const history = useHistory();
+
+  function handleNavigateToCertificates() {
+    history.push("dashboard/certificates");
+  }
+
+  function handleNavigateToStudents() {
+    history.push("dashboard/students");
+  }
+
   return (
     <>
       <Menu />
@@ -17,8 +28,14 @@ function Dashboard() {
           fácil e rápida.
         </p>
         <p>
-          <Button variant="dark">Cadastrar Aluno</Button>
-          <Button style={{ marginLeft: 10 }} variant="light">
+          <Button onClick={handleNavigateToStudents} variant="dark">
+            Listar Alunos
+          </Button>
+          <Button
+            onClick={handleNavigateToCertificates}
+            style={{ marginLeft: 10 }}
+            variant="light"
+          >
             Emitir Certificado
           </Button>
         </p>

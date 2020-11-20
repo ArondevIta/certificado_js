@@ -17,7 +17,7 @@ function Menu() {
           <Nav.Link id="link-menu" href="/login">
             Entrar <FaSignInAlt />
           </Nav.Link>
-          <Nav.Link id="link-menu" href="#link">
+          <Nav.Link id="link-menu" href="/register">
             Cadastre-se <FaUserPlus />
           </Nav.Link>
         </Nav>
