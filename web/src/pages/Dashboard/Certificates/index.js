@@ -273,6 +273,7 @@ function Certificates() {
                     <td>
                       <FaPrint
                         className="print-icon"
+                        color={"#ADD8E6"}
                         onClick={() => generatePDF(certificate.id)}
                       />
                     </td>
