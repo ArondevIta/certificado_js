@@ -1,10 +1,15 @@
 import React from "react";
 import { Nav, Navbar, Form, Button, FormControl } from "react-bootstrap";
 import { FaHome, FaSignInAlt, FaUserPlus } from "react-icons/fa";
+import api from "../../../services/api";
 
 import "./style.css";
 
 function Menu() {
+  async function handleSearchCode() {
+    const response = await api.get("search");
+  }
+
   return (
     <Navbar bg="primary" expand="lg">
       <Navbar.Brand href="#home">Certificado Legal</Navbar.Brand>
@@ -21,7 +26,7 @@ function Menu() {
             Cadastre-se <FaUserPlus />
           </Nav.Link>
         </Nav>
-        <Form inline>
+        <Form method="get" inline onSubmit={handleSearchCode}>
           <FormControl
             type="text"
             placeholder="Digite o codigo do certificado"
