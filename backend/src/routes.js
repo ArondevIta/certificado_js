@@ -4,6 +4,7 @@ const UserController = require("./controllers/UserController");
 const SessionController = require("./controllers/SessionController");
 const StudentController = require("./controllers/StudentController");
 const CertificateController = require("./controllers/CertificateController");
+const SearchCertificateController = require("./controllers/SearchCertificateController");
 
 const auth = require("./middlewares/auth");
 const is_admin = require("./middlewares/is_admin");
@@ -26,5 +27,7 @@ routes.get("/certificates/:id", CertificateController.show);
 routes.post("/certificates", CertificateController.create, is_admin);
 routes.put("/certificates/:id", CertificateController.update, is_admin);
 routes.delete("/certificates/:id", CertificateController.destroy, is_admin);
+
+routes.get("/search", SearchCertificateController.index);
 
 module.exports = routes;
