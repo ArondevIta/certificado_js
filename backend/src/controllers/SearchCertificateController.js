@@ -3,6 +3,7 @@ const connection = require("../database/connection");
 module.exports = {
   async index(req, res) {
     const { code } = req.query;
+    let message = false;
 
     if (!code) {
       return res.json({ error: "code not provided" });
@@ -14,9 +15,9 @@ module.exports = {
       .first();
 
     if (!certificates) {
-      return res.json({ error: "Certificate not valid" });
+      return res.json(message);
     }
-
-    return res.json({ certificates });
+    message = true;
+    return res.json(message);
   },
 };
