@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Nav, Navbar, Form, Button, FormControl } from "react-bootstrap";
 import { FaHome, FaSignInAlt, FaUserPlus } from "react-icons/fa";
 import api from "../../../services/api";
@@ -6,8 +6,15 @@ import api from "../../../services/api";
 import "./style.css";
 
 function Menu() {
-  async function handleSearchCode() {
-    const response = await api.get("search");
+  const [code, setCode] = useState("");
+  async function handleSearchCode(e) {
+    e.preventDefault();
+    const response = await api.get("search", { params: { code } });
+    if (response.data !== true) {
+      alert("Certificado inválido!");
+      return;
+    }
+    alert("Certificado válido");
   }
 
   return (
@@ -31,8 +38,14 @@ function Menu() {
             type="text"
             placeholder="Digite o codigo do certificado"
             className="mr-sm-2"
+            value={code}
+            onChange={(e) => setCode(e.target.value)}
+            placeholder="Código Certificado"
+            required
           />
-          <Button variant="outline-light">Validar</Button>
+          <Button type="submit" variant="outline-light">
+            Validar
+          </Button>
         </Form>
       </Navbar.Collapse>
     </Navbar>
