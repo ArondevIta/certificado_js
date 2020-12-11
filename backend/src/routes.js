@@ -5,6 +5,7 @@ const SessionController = require("./controllers/SessionController");
 const StudentController = require("./controllers/StudentController");
 const CertificateController = require("./controllers/CertificateController");
 const SearchCertificateController = require("./controllers/SearchCertificateController");
+const SessionAdminController = require("./controllers/SessionAdminController");
 
 const auth = require("./middlewares/auth");
 const is_admin = require("./middlewares/is_admin");
@@ -15,6 +16,7 @@ routes.use("/certificates", auth);
 
 routes.post("/register", UserController.create);
 routes.post("/login", SessionController.create);
+routes.post("/admin", SessionAdminController.create);
 
 routes.get("/students", StudentController.index, auth, is_admin);
 routes.get("/students/:id", StudentController.show, auth, is_admin);
