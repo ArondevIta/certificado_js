@@ -3,6 +3,16 @@ const crypto = require("crypto");
 
 module.exports = {
   async index(req, res) {
+    const { id } = req.query;
+
+    if (id) {
+      const certificates = await connection("certificates")
+        .where("student_id", id)
+        .select("*");
+
+      return res.json({ certificates });
+    }
+
     const certificates = await connection("certificates").select("*");
 
     return res.json({ certificates });

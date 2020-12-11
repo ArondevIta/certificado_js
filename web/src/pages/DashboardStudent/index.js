@@ -1,12 +1,12 @@
 import React from "react";
 
-// import { Container } from './styles';
+import Menu from "./Menu";
 
 function DashboardStudent() {
   return (
-    <div>
-      <h1>ESTUDANTE</h1>
-    </div>
+    <>
+      <Menu />
+    </>
   );
 }
 
