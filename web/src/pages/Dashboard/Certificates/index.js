@@ -164,7 +164,7 @@ function Certificates() {
           onClick={handleShow}
           style={{ marginBottom: 15, width: 200 }}
           size="lg"
-          variant="outline-primary"
+          variant="outline-light"
         >
           Adicionar <FaPlusSquare />
         </Button>
@@ -238,8 +238,8 @@ function Certificates() {
               </Form.Group>
               <Button
                 type="submit"
-                style={{ float: "right" }}
-                variant="primary"
+                style={{ float: "right", backgroundColor: "#F4A460" }}
+                variant="light"
               >
                 Cadastrar certificado
               </Button>

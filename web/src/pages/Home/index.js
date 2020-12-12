@@ -32,15 +32,21 @@ function Home() {
         <Button
           onClick={goToLogin}
           className="butao"
-          variant="primary"
+          variant="dark"
+          style={{ backgroundColor: "#F4A460" }}
           size="lg"
         >
           Login
         </Button>
         <Button
           onClick={goToRegister}
-          style={{ marginLeft: 15, width: 200 }}
-          variant="outline-primary"
+          style={{
+            marginLeft: 15,
+            width: 200,
+            color: "#F4A460",
+            borderColor: "#F4A460",
+          }}
+          variant="outline-dark"
           size="lg"
         >
           Cadastre-se

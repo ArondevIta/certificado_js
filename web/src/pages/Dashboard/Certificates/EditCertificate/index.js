@@ -101,7 +101,11 @@ function EditCertificate() {
               placeholder="Nome do Coordenador"
             />
           </Form.Group>
-          <Button type="submit" style={{ float: "right" }} variant="primary">
+          <Button
+            type="submit"
+            style={{ float: "right", backgroundColor: "#F4A460" }}
+            variant="light"
+          >
             Salvar certificado
           </Button>
         </Form>

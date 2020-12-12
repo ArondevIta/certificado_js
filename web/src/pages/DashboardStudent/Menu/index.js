@@ -12,20 +12,18 @@ function Menu() {
   }
 
   return (
-    <Navbar bg="primary" expand="lg">
+    <Navbar style={{ backgroundColor: "#F4A460" }} expand="lg">
       <Navbar.Brand href="#home">Certificado Legal</Navbar.Brand>
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
       <Navbar.Collapse id="basic-navbar-nav">
-        <Nav className="mr-auto">
+        <Nav className="ml-auto">
           <Nav.Link href="/student">
             Home <FaHome />
           </Nav.Link>
           <Nav.Link href="/student/certificates">
             Certificados <FaCertificate />
           </Nav.Link>
-          <Nav.Link href="/student/profile">
-            Perfil <FaUser />
-          </Nav.Link>
+
           <Nav.Link onClick={handleLogout}>
             Sair <FaSignOutAlt />
           </Nav.Link>
