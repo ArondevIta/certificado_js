@@ -18,9 +18,17 @@ function Login() {
 
     try {
       const response = await api.post("login", { email, password });
+      const { is_admin } = response.data;
+
+      if (!is_admin) {
+        localStorage.setItem("token", response.data.token);
+        localStorage.setItem("userId", response.data.id);
+        history.push("student");
+        return;
+      }
+
       localStorage.setItem("token", response.data.token);
       localStorage.setItem("userId", response.data.id);
-
       history.push("dashboard");
     } catch (err) {
       alert("Erro, usuario ou senha inválido");
@@ -53,6 +61,7 @@ function Login() {
               required
             />
           </Form.Group>
+
           <Button className="btn-login" type="submit" variant="dark">
             Entrar
           </Button>

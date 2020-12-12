@@ -6,9 +6,11 @@ import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import Dashboard from "./pages/Dashboard";
+import DashboardStudent from "./pages/DashboardStudent";
 import Students from "./pages/Dashboard/Students";
 import Certificates from "./pages/Dashboard/Certificates";
 import EditCertificate from "./pages/Dashboard/Certificates/EditCertificate";
+import StudentCertificate from "./pages/DashboardStudent/Certificates";
 
 function Routes() {
   return (
@@ -25,6 +27,12 @@ function Routes() {
           component={EditCertificate}
         />
         <Route path="/dashboard/students" exact component={Students} />
+        <Route path="/student" exact component={DashboardStudent} />
+        <Route
+          path="/student/certificates"
+          exact
+          component={StudentCertificate}
+        />
       </Switch>
     </BrowserRouter>
   );

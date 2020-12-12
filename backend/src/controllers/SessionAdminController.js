@@ -13,6 +13,10 @@ module.exports = {
       .select("*")
       .first();
 
+    if (!user.is_admin) {
+      return res.status(401).json({ error: "User does not admin" });
+    }
+
     if (!user) {
       return res.status(400).json({ error: "User does not exists!" });
     }
@@ -25,6 +29,6 @@ module.exports = {
       expiresIn: 86400,
     });
 
-    return res.json({ id: user.id, token, is_admin: user.is_admin });
+    return res.json({ id: user.id, token });
   },
 };
