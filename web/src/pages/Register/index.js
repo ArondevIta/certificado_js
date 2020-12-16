@@ -83,7 +83,7 @@ function Register() {
         city: selectedCity,
         uf: selectedUf,
       });
-      history.push("dashboard");
+      history.push("student");
     } catch (err) {
       alert("Err", err);
     }
