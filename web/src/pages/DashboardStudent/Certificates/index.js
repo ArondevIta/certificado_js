@@ -14,12 +14,17 @@ function Certificates() {
   const [certificates, setCertificates] = useState([]);
 
   const token = localStorage.getItem("token");
-  const id = localStorage.getItem("id");
+  const id = localStorage.getItem("userId");
 
   async function loadCertificates() {
+    const res = await api.get(`students/?user_id=${id}`, {
+      headers: { Authorization: `Bearer ${token}` },
+    });
+    const id_student = res.data.students[0].id;
+
     const response = await api.get(
-      "certificates",
-      { params: { id } },
+      `certificates?id=${id_student}`,
+
       {
         headers: { Authorization: `Bearer ${token}` },
       }

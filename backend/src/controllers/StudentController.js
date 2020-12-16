@@ -3,6 +3,14 @@ const crypto = require("crypto");
 
 module.exports = {
   async index(req, res) {
+    const { user_id } = req.query;
+
+    if (user_id) {
+      const students = await connection("students")
+        .where("user_id", user_id)
+        .select("*");
+      return res.json({ students });
+    }
     const students = await connection("students").select("*");
 
     return res.json({ students });
