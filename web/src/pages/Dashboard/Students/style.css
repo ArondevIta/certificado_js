@@ -7,3 +7,9 @@
   cursor: pointer;
   height: 20px;
 }
+
+.btn-save {
+  background-color: #f4a460;
+  float: right;
+  width: 130px;
+}
